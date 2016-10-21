@@ -25,7 +25,7 @@ import java.util.UUID;
  * Created by XIAOYAO on 2016/10/21.
  * 视频点播服务接口调用
  */
-public class PointAPI {
+public class VideoPointAPI {
 
     private static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 
@@ -126,17 +126,6 @@ public class PointAPI {
         }
 
         return requestURL.toString();
-    }
-
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
-        videoPoint();
-        String url = computing();
-        System.out.println(url);
-        try {
-            HttpSend.sendGet(url, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
