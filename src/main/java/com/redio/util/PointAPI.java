@@ -37,7 +37,7 @@ public class PointAPI {
 
     private static final String ENCODING = "UTF-8";
 
-    private static final String secret = "MbaTno3rh8eYsYp9noyABcbk1ij2A0"; //此处请替换成您的AccessKeySecret
+    private static final String secret = "youkey"; //此处请替换成您的AccessKeySecret
 
     private static final String SEPARATOR = "&";
 
