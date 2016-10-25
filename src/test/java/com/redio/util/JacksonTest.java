@@ -3,6 +3,7 @@ package com.redio.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +12,10 @@ import java.util.Map;
  * Created by XIAOYAO on 2016/10/24.
  * jackson转换null测试
  */
-public class Test {
+public class JacksonTest {
 
-    public static void main(String[] args) throws JsonProcessingException {
+    @Test
+    public void jacksonIsNullTest() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
@@ -33,6 +35,10 @@ public class Test {
         u.setId(2);
         params.put("user", u);
         System.out.println(mapper.writeValueAsString(params));
+    }
+
+    public static void main(String[] args) throws JsonProcessingException {
+
     }
 
 }
