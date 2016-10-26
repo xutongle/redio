@@ -15,7 +15,7 @@ import java.util.Map;
 public class JacksonTest {
 
     @Test
-    public void jacksonIsNullTest() throws JsonProcessingException {
+    public void jacksonIsNullTest1() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
@@ -37,8 +37,13 @@ public class JacksonTest {
         System.out.println(mapper.writeValueAsString(params));
     }
 
-    public static void main(String[] args) throws JsonProcessingException {
+    public void test() {
 
+    }
+
+
+    public static void main(String[] args) throws JsonProcessingException {
+        new JacksonTest().jacksonIsNullTest1();
     }
 
 }
