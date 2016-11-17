@@ -105,8 +105,9 @@ public class VideoPointAPI {
 
     /**
      * 计算签名
-     * @throws InvalidKeyException 异常
-     * @throws NoSuchAlgorithmException 异常
+     *
+     * @throws InvalidKeyException          异常
+     * @throws NoSuchAlgorithmException     异常
      * @throws UnsupportedEncodingException 异常
      */
     public static String computing() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
