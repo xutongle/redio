@@ -37,13 +37,4 @@ public class JacksonTest {
         System.out.println(mapper.writeValueAsString(params));
     }
 
-    public void test() {
-
-    }
-
-
-    public static void main(String[] args) throws JsonProcessingException {
-        new JacksonTest().jacksonIsNullTest1();
-    }
-
 }
