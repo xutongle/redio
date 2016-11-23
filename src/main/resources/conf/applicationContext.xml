@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!-- PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配多个properties文件 -->
+        <property name="locations">
+            <array>
+                <value>classpath:conf/db.properties</value>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 设置使用注解的类所在目录 -->
+    <context:component-scan base-package="cn.redio"/>
+
+    <!--c3p0-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${mysql.driver}"></property>
+        <property name="url" value="${mysql.url}"></property>
+        <property name="username" value="${mysql.username}"></property>
+        <property name="password" value="${mysql.password}"></property>
+        <!--#最大连接数据库连接数,设 0 为没有限制-->
+        <property name="maxActive">
+            <value>500</value>
+        </property>
+        <!--#最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止。设 0 为没有限制-->
+        <property name="maxIdle">
+            <value>20</value>
+        </property>
+        <!--最大等待毫秒数, 单位为 ms, 超过时间会出错误信息-->
+        <property name="maxWait">
+            <value>1000</value>
+        </property>
+        <property name="defaultAutoCommit">
+            <value>false</value>
+        </property>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"/>
+
+    <!-- 通过AOP配置提供事务增强，让service包下所有Bean的所有方法拥有事务 -->
+    <aop:config proxy-target-class="true">
+        <aop:pointcut expression="execution(* cn.redio.service..*(..))" id="serviceMethod"/>
+        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 配置JdbcTemplate模版 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--配置NamedParameterJdbcTemplate模版-->
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+</beans>

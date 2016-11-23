@@ -1,4 +1,4 @@
-package com.redio.util;
+package cn.redio.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

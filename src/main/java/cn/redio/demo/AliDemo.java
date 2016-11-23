@@ -1,4 +1,4 @@
-package com.redio.demo;
+package cn.redio.demo;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;

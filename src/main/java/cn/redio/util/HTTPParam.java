@@ -1,4 +1,4 @@
-package com.redio.util;
+package cn.redio.util;
 
 /**
  * Created by XIAOYAO on 2016/10/21.

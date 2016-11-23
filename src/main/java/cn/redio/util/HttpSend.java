@@ -1,4 +1,4 @@
-package com.redio.util;
+package cn.redio.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
