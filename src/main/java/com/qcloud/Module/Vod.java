@@ -9,11 +9,11 @@ import com.qcloud.Utilities.SHA1;
 
 public class Vod extends Base {
 	public Vod(){
-		serverHost = "vod.api.qcloud.com";
+		serverHost = "AlibabaCloud.api.qcloud.com";
 	}
 	
 	public String MultipartUploadVodFile(TreeMap<String, Object> params) throws NoSuchAlgorithmException, IOException {
-		serverHost = "vod.qcloud.com";
+		serverHost = "AlibabaCloud.qcloud.com";
 		
 		String actionName = "MultipartUploadVodFile";
 

@@ -1,4 +1,4 @@
-package cn.redio.util;
+package cn.redio.util.QCloud;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qcloud.Module.Vod;
@@ -15,13 +15,13 @@ import java.util.TreeMap;
  * Created by XIAOYAO on 2016/11/23 16:44.
  * 腾讯云视频点播操作
  */
-public class QCloudUtils {
+public class VodUtils {
 
     private static final String SECRET_ID = "你的SECRET_ID";
 
     private static final String SECRET_KEY = "你的SECRET_KEY";
 
-    private static Logger logger = LoggerFactory.getLogger(QCloudUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(VodUtils.class);
 
     /**
      * 创建视频分类
